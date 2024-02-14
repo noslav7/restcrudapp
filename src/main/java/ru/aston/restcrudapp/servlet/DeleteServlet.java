@@ -1,26 +1,26 @@
-package ru.aston.restcrudapp.controller_servlet;
+package ru.aston.restcrudapp.servlet;
 
-import ru.aston.restcrudapp.mapper.EmployeeMapper;
+import ru.aston.restcrudapp.service.EmployeeService;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/deleteservlet")
 public class DeleteServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet (HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.setContentType("text/html");
 
         String employeeId = request.getParameter("id");
         int id = Integer.parseInt(employeeId);
-        EmployeeMapper.delete(id);
-        int status = EmployeeMapper.delete(id);
+        EmployeeService.delete(id);
+        int status = EmployeeService.delete(id);
 
         PrintWriter out = response.getWriter();
         if (status > 0) {

@@ -1,17 +1,17 @@
-package ru.aston.restcrudapp.controller_servlet;
+package ru.aston.restcrudapp.servlet;
 
 import ru.aston.restcrudapp.entity.Employee;
-import ru.aston.restcrudapp.mapper.EmployeeMapper;
+import ru.aston.restcrudapp.service.EmployeeService;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet("/updateservlet")
-public class UpdateServlet extends HttpServlet {
+@WebServlet("/updateoptionservlet")
+public class UpdateOptionServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -23,9 +23,9 @@ public class UpdateServlet extends HttpServlet {
 
         String stringId = request.getParameter("id");
         int id = Integer.parseInt(stringId);
-        Employee employee = EmployeeMapper.getEmployeeById(id);
+        Employee employee = EmployeeService.getEmployeeById(id);
 
-        out.print("<form action='updateservlet2' method='post'>");
+        out.print("<form action='updatebuttonservlet' method='post'>");
         out.print("<table>");
         out.print("<tr><td></td><td><input type='hidden' name='id' value='"
                 + employee.getId() + "'/></td></tr>");

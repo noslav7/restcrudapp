@@ -1,15 +1,15 @@
-package ru.aston.restcrudapp.controller_servlet;
+package ru.aston.restcrudapp.servlet;
 
 import ru.aston.restcrudapp.entity.Employee;
-import ru.aston.restcrudapp.mapper.EmployeeMapper;
+import ru.aston.restcrudapp.service.EmployeeService;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet ("/reportservlet")
 public class ReportServlet extends HttpServlet {
@@ -24,12 +24,12 @@ public class ReportServlet extends HttpServlet {
         Employee employee = new Employee();
         employee.setName(name);
         employee.setDepartment(department);
-        int status = EmployeeMapper.save(employee);
+        int status = EmployeeService.save(employee);
 
         PrintWriter out = response.getWriter();
         if (status > 0) {
-            out.print ("<p>Record saved successfully!</p>");
-            request.getRequestDispatcher ("index.html").include(request, response);
+            out.print("<p>Record saved successfully!</p>");
+            request.getRequestDispatcher("index.html").include(request, response);
         } else {
             out.println("Unable to save record!");
         }

@@ -1,4 +1,4 @@
-package ru.aston.restcrudapp.controller_servlet;
+package ru.aston.restcrudapp.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,12 +38,12 @@ public class AddServlet extends HttpServlet {
                     "password");
 
             Statement statement = connection.createStatement();
-            statement.executeUpdate("insert into employee values (" +
+            statement.executeUpdate("insert into employees values (" +
                     "" + id + ",'" + name + "', '" + department + "')");
 
             PrintWriter out = response.getWriter();
             out.println("<h1>Record Inserted Successfully</h1>");
-            String sql = "select * from employee";
+            String sql = "select * from employees";
             ResultSet resultSet = statement.executeQuery(sql);
 
             out.println("<form action = 'viewservlet' method='post'>");

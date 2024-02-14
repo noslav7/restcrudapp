@@ -1,4 +1,4 @@
-package ru.aston.restcrudapp.mapper;
+package ru.aston.restcrudapp.repository;
 
 import ru.aston.restcrudapp.entity.Employee;
 
@@ -6,9 +6,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeMapper {
+/*
+Сделал все методы статическими только для того, чтобы ускорить написание кода сейчас.
+Понимаю, что в постоянно поддерживаемых проектах, в которые вносятся дополнения и изменения
+следует объявить переменную EmployeeRepository и использовать в методах ее, а все методы должны быть
+нестатическими.
+Аналогично в EmployeeService.
+ */
+public class EmployeeRepository {
     public static Connection getConnection() {
-        Connection connection = null;
+        Connection connection;
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection (
@@ -16,7 +23,7 @@ public class EmployeeMapper {
                     "postgres",
                     "password");
         } catch(SQLException sqlException) {
-            throw new RuntimeException("Cannot Connect the Database!", sqlException);
+            throw new RuntimeException("Cannot connect to the database!", sqlException);
         } catch (ClassNotFoundException classNotFoundException) {
             throw new RuntimeException(classNotFoundException);
         }
@@ -24,9 +31,9 @@ public class EmployeeMapper {
     }
 
     public static int save(Employee employee) {
-        int status = 0;
+        int status;
         try {
-            Connection connection = EmployeeMapper.getConnection();
+            Connection connection = EmployeeRepository.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement (
                     "insert into employees(name, department) values (?,?)");
             preparedStatement.setString(1, employee.getName());
@@ -40,9 +47,9 @@ public class EmployeeMapper {
     }
 
     public static int update(Employee employee) {
-        int status = 0;
+        int status;
         try {
-            Connection connection = EmployeeMapper.getConnection ();
+            Connection connection = EmployeeRepository.getConnection ();
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "update employees set name=?, department=? where id=?");
             preparedStatement.setString (1, employee.getName ());
@@ -57,9 +64,9 @@ public class EmployeeMapper {
     }
 
     public static int delete(int id) {
-        int status = 0;
+        int status;
         try {
-            Connection connection = EmployeeMapper.getConnection ();
+            Connection connection = EmployeeRepository.getConnection ();
             PreparedStatement preparedStatement =connection.prepareStatement (
                     "delete from employees where id=?");
             preparedStatement.setInt (1, id);
@@ -74,7 +81,7 @@ public class EmployeeMapper {
     public static Employee getEmployeeById(int id) {
         Employee employee = new Employee ();
         try {
-            Connection connection = EmployeeMapper.getConnection ();
+            Connection connection = EmployeeRepository.getConnection ();
             PreparedStatement preparedStatement = connection.prepareStatement (
                     "select * from employees where id=?");
             preparedStatement.setInt (1, id);
@@ -92,9 +99,9 @@ public class EmployeeMapper {
     }
 
     public static List<Employee> getAllEmployees() {
-        List<Employee> list = new ArrayList<Employee>();
+        List<Employee> list = new ArrayList<>();
         try {
-            Connection connection = EmployeeMapper.getConnection();
+            Connection connection = EmployeeRepository.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "select * from employees");
 
