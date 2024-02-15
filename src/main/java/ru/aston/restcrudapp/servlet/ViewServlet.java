@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 import java.util.List;
 
-@WebServlet("/viewservlet")
+@WebServlet("/employees")
 public class ViewServlet extends HttpServlet {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     protected void doGet (HttpServletRequest request, HttpServletResponse response)
@@ -29,8 +31,8 @@ public class ViewServlet extends HttpServlet {
         for (Employee employee : list) {
             out.print("<tr><td>" + employee.getId() + "</td><td>" + employee.getName() +
                     "</td><td>" + employee.getDepartment() +
-                    "</td><td><a href='updateoptionservlet?id=" + employee.getId() +
-                    "'>update</a></td>  <td><a href='deleteservlet?id=" +
+                    "</td><td><a href='updateoption?id=" + employee.getId() +
+                    "'>update</a></td>  <td><a href='deletion?id=" +
                     employee.getId() + "'>delete</a></td></tr>");
         }
         out.print("</table>");

@@ -2,6 +2,7 @@ package ru.aston.restcrudapp.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,8 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/addservlet")
+@WebServlet("/addition")
 public class AddServlet extends HttpServlet {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
@@ -46,8 +48,8 @@ public class AddServlet extends HttpServlet {
             String sql = "select * from employees";
             ResultSet resultSet = statement.executeQuery(sql);
 
-            out.println("<form action = 'viewservlet' method='post'>");
-            out.print("<tr><a href ='viewservlet'>View Employee</a></td></tr>");
+            out.println("<form action = 'employees' method='post'>");
+            out.print("<tr><a href ='employees'>View Employee</a></td></tr>");
             out.println("</tr>");
             out.println("</table>");
             out.println("</form>");

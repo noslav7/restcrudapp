@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 
-@WebServlet("/updateoptionservlet")
+@WebServlet("/updateoption")
 public class UpdateOptionServlet extends HttpServlet {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +27,7 @@ public class UpdateOptionServlet extends HttpServlet {
         int id = Integer.parseInt(stringId);
         Employee employee = EmployeeService.getEmployeeById(id);
 
-        out.print("<form action='updatebuttonservlet' method='post'>");
+        out.print("<form action='updatebutton' method='post'>");
         out.print("<table>");
         out.print("<tr><td></td><td><input type='hidden' name='id' value='"
                 + employee.getId() + "'/></td></tr>");

@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-@WebServlet("/updatebuttonservlet")
+import java.io.Serial;
+
+@WebServlet("/updatebutton")
 public class UpdateButtonServlet extends HttpServlet {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -30,7 +33,7 @@ public class UpdateButtonServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         if (status > 0) {
             out.println("Record updated successfully...");
-            response.sendRedirect("viewservlet");
+            response.sendRedirect("employees");
         } else {
             out.println("Unable to update record");
         }
