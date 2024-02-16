@@ -17,7 +17,7 @@ public class ViewServlet extends HttpServlet {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    protected void doGet (HttpServletRequest request, HttpServletResponse response)
+    public void doGet (HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.setContentType("text/html");
 
