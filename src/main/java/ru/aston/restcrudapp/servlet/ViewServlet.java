@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serial;
+import java.util.Collections;
 import java.util.List;
 
 @WebServlet("/employees")
@@ -28,6 +29,7 @@ public class ViewServlet extends HttpServlet {
         out.print("<tr><th>Id</th><th>Name</th><th>Department</th><th>Update</th><th>Delete</th></tr>");
 
         List<Employee> list = EmployeeService.getAllEmployees();
+        Collections.sort(list);
         for (Employee employee : list) {
             out.print("<tr><td>" + employee.getId() + "</td><td>" + employee.getName() +
                     "</td><td>" + employee.getDepartment() +

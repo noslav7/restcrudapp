@@ -1,5 +1,5 @@
 INSERT INTO employees(name, department) VALUES('Krotov Leonid', 'Marketing');
-INSERT INTO employees(name, department) VALUES('Koksharova Yulia', 'PR');
+INSERT INTO employees(name, department) VALUES('Koksharova Yuliya', 'PR');
 INSERT INTO employees(name, department) VALUES('Raskoshniy Artyom', 'Support');
 INSERT INTO employees(name, department) VALUES('Kirov Ivan', 'Sales');
 INSERT INTO employees(name, department) VALUES('Sergeev Semen', 'Sales');
