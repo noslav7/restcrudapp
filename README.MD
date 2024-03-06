@@ -20,3 +20,4 @@ at employees' page choose "delete" option of the employee
 
 
 Testing of the application is currently available with UI only
+video recording https://cloud.mail.ru/public/67LL/Si7o1MjXr
